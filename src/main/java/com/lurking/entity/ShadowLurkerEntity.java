@@ -14,7 +14,7 @@ import net.minecraft.world.World;
 
 public class ShadowLurkerEntity extends HostileEntity {
     private int stalkingTicks = 0;
-    private static final int MAX_STALKING_TIME = 600; // 30 seconds
+    private static final int MAX_STALKING_TIME = 600;
 
     public ShadowLurkerEntity(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);
@@ -52,14 +52,10 @@ public class ShadowLurkerEntity extends HostileEntity {
             if (nearestPlayer != null) {
                 stalkingTicks++;
                 
-                // Drain sanity from nearby players
-                if (stalkingTicks % 40 == 0) { // Every 2 seconds
-                    ModComponents.SANITY.maybeGet(nearestPlayer).ifPresent(sanity -> {
-                        sanity.decreaseSanity(2);
-                    });
+                if (stalkingTicks % 40 == 0) {
+                    ModComponents.getSanity(nearestPlayer.getUuid()).decreaseSanity(2);
                 }
                 
-                // Become more aggressive as it stalks
                 if (stalkingTicks > MAX_STALKING_TIME / 2) {
                     this.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED)
                         .setBaseValue(0.35);
@@ -69,14 +65,12 @@ public class ShadowLurkerEntity extends HostileEntity {
             }
         }
         
-        // Particles and effects on client
         if (this.getWorld().isClient && this.random.nextFloat() < 0.1f) {
             spawnShadowParticles();
         }
     }
 
     private void spawnShadowParticles() {
-        // Shadow particle effects
         for (int i = 0; i < 2; i++) {
             double d = this.random.nextGaussian() * 0.02;
             double e = this.random.nextGaussian() * 0.02;
@@ -109,11 +103,5 @@ public class ShadowLurkerEntity extends HostileEntity {
     @Override
     protected float getSoundVolume() {
         return 0.8f;
-    }
-
-    @Override
-    public boolean canSee(net.minecraft.entity.Entity entity) {
-        // Can see through darkness
-        return super.canSee(entity) || this.squaredDistanceTo(entity) < 256.0;
     }
 }
