@@ -1,21 +1,15 @@
 package com.lurking.component;
 
 import com.lurking.TheLurking;
-import dev.onyxstudios.cca.api.v3.component.ComponentKey;
-import dev.onyxstudios.cca.api.v3.component.ComponentRegistry;
-import dev.onyxstudios.cca.api.v3.entity.EntityComponentFactoryRegistry;
-import dev.onyxstudios.cca.api.v3.entity.EntityComponentInitializer;
-import dev.onyxstudios.cca.api.v3.entity.RespawnCopyStrategy;
-import net.minecraft.util.Identifier;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 
-public class ModComponents implements EntityComponentInitializer {
-    
-    public static final ComponentKey<SanityComponent> SANITY =
-        ComponentRegistry.getOrCreate(new Identifier(TheLurking.MOD_ID, "sanity"), SanityComponent.class);
+public class ModComponents {
+    private static final Map<UUID, SanityComponent> SANITY_MAP = new HashMap<>();
 
-    @Override
-    public void registerEntityComponentFactories(EntityComponentFactoryRegistry registry) {
-        registry.registerForPlayers(SANITY, player -> new SanityComponent(), RespawnCopyStrategy.ALWAYS_COPY);
+    public static SanityComponent getSanity(UUID playerId) {
+        return SANITY_MAP.computeIfAbsent(playerId, id -> new SanityComponent());
     }
 
     public static void register() {
