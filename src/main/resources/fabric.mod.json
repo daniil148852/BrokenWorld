@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "id": "thelurking",
+  "version": "${version}",
+  "name": "The Lurking",
+  "description": "A horror mod that brings terror to Minecraft",
+  "authors": [
+    "YourName"
+  ],
+  "contact": {
+    "homepage": "https://github.com/yourusername/the-lurking",
+    "sources": "https://github.com/yourusername/the-lurking"
+  },
+  "license": "MIT",
+  "icon": "assets/thelurking/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.lurking.TheLurking"
+    ],
+    "client": [
+      "com.lurking.client.TheLurkingClient"
+    ]
+  },
+  "mixins": [
+    "thelurking.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.15.0",
+    "minecraft": "~1.20.1",
+    "java": ">=17",
+    "fabric-api": "*"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "entity.thelurking.shadow_lurker": "Shadow Lurker",
+  "entity.thelurking.whisperer": "Whisperer",
+  "item.thelurking.shadow_lurker_spawn_egg": "Shadow Lurker Spawn Egg",
+  "item.thelurking.whisperer_spawn_egg": "Whisperer Spawn Egg",
+  "item.thelurking.cursed_crystal": "Cursed Crystal",
+  "block.thelurking.cursed_stone": "Cursed Stone",
+  "sound.thelurking.entity.shadow_lurker.ambient": "Shadow Lurker groans",
+  "sound.thelurking.entity.shadow_lurker.hurt": "Shadow Lurker hurts",
+  "sound.thelurking.entity.shadow_lurker.death": "Shadow Lurker dies",
+  "sound.thelurking.entity.whisperer.whisper": "Whispering",
+  "sound.thelurking.sanity.low": "Your sanity is fading"
+}
