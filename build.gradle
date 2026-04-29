@@ -1,5 +1,5 @@
 plugins {
-    id 'fabric-loom' version '1.4-SNAPSHOT'
+    id 'fabric-loom' version '1.5-SNAPSHOT'
     id 'maven-publish'
 }
 
@@ -11,20 +11,11 @@ base {
 }
 
 repositories {
-    maven { url 'https://maven.fabricmc.net/' }
-    maven { url 'https://maven.shedaniel.me/' }
-    maven { url 'https://maven.terraformersmc.com/releases/' }
-}
-
-loom {
-    splitEnvironmentSourceSets()
-
-    mods {
-        thelurking {
-            sourceSet sourceSets.main
-            sourceSet sourceSets.client
-        }
+    maven { 
+        name = 'Fabric'
+        url = 'https://maven.fabricmc.net/' 
     }
+    mavenCentral()
 }
 
 dependencies {
@@ -48,13 +39,24 @@ tasks.withType(JavaCompile).configureEach {
 
 java {
     withSourcesJar()
-
     sourceCompatibility = JavaVersion.VERSION_17
     targetCompatibility = JavaVersion.VERSION_17
 }
 
 jar {
     from("LICENSE") {
-        rename { "${it}_${project.archivesBaseName}"}
+        rename { "${it}_${project.base.archivesName.get()}"}
+    }
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+
+    repositories {
+        // Add repositories to publish to here.
     }
 }
