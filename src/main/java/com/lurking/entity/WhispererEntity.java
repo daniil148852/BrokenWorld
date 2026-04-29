@@ -38,13 +38,10 @@ public class WhispererEntity extends HostileEntity {
         super.tick();
         
         if (!this.getWorld().isClient) {
-            // Whisper to nearby players, draining their sanity
             this.getWorld().getPlayers().forEach(player -> {
-                if (this.squaredDistanceTo(player) < 576.0) { // 24 blocks
-                    if (this.age % 60 == 0) { // Every 3 seconds
-                        ModComponents.SANITY.maybeGet(player).ifPresent(sanity -> {
-                            sanity.decreaseSanity(1);
-                        });
+                if (this.squaredDistanceTo(player) < 576.0) {
+                    if (this.age % 60 == 0) {
+                        ModComponents.getSanity(player.getUuid()).decreaseSanity(1);
                     }
                 }
             });
