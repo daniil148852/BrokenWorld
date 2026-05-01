@@ -120,7 +120,7 @@ public class FrameSender {
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(URI.create(OasisConfig.serverUrl + "/transform"))
                     .header("Content-Type", "application/json")
-                    .timeout(Duration.ofSeconds(30))
+                    .timeout(Duration.ofSeconds(240))
                     .POST(HttpRequest.BodyPublishers.ofString(json))
                     .build();
 
