@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "id": "oasisclient",
+  "version": "${version}",
+  "name": "Oasis Client",
+  "description": "Real-time AI frame transformation for Minecraft via custom server",
+  "authors": ["Daniil"],
+  "contact": {},
+  "license": "MIT",
+  "icon": "assets/oasisclient/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "dev.daniil.oasisclient.OasisClientMod"
+    ]
+  },
+  "mixins": [
+    "oasisclient.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.16.0",
+    "fabric-api": "*",
+    "minecraft": "~1.21.1",
+    "java": ">=21"
+  }
+}
